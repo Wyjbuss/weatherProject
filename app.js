@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // used/required in order to start using body parser in our code
 // parses the html file
