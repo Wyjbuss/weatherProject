@@ -1,6 +1,9 @@
 const express = require('express');
 const https = require('https');
 const bodyParser = require('body-parser');
+if (process.env.NODE_EVN !== 'production') {
+	require('dotenv').config(); // use .config
+}
 
 const app = express();
 
@@ -22,7 +25,8 @@ app.post("/", function(req, res) {
 
 
 	const query = req.body.cityName;
-	const apiKey = '921ae217379371fec2fd61cd0ec56121'
+	const apiKey = process.env.DEFAULT_WEATHER_API_KEY // using this it reqires 'dotenv' in the dependencies
+	// using for only developemnt dependecies currently. it is so that the api key isnt shown to anyone on the github repo
 	const unit = "imperial"
 	const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}&units=${unit}`;
 	// gives us back a response
